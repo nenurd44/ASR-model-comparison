@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+        }
+
+        @media print {
+            .notebook-container {
+                max-width: none;
+                padding: 15mm;
+            }
+            .cell {
+                page-break-inside: avoid;
+            }
+            .markdown-cell h1,
+            .markdown-cell h2,
+            .markdown-cell h3 {
+                page-break-after: avoid;
+            }
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>!pip install -U transformers accelerate datasets soundfile librosa faster-whisper jiwer</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Requirement already satisfied: transformers in /usr/local/lib/python3.12/dist-packages (5.0.0)
+Collecting transformers
+  Downloading transformers-5.4.0-py3-none-any.whl.metadata (32 kB)
+Requirement already satisfied: accelerate in /usr/local/lib/python3.12/dist-packages (1.13.0)
+Requirement already satisfied: datasets in /usr/local/lib/python3.12/dist-packages (4.0.0)
+Collecting datasets
+  Downloading datasets-4.8.4-py3-none-any.whl.metadata (19 kB)
+Requirement already satisfied: soundfile in /usr/local/lib/python3.12/dist-packages (0.13.1)
+Requirement already satisfied: librosa in /usr/local/lib/python3.12/dist-packages (0.11.0)
+Collecting faster-whisper
+  Downloading faster_whisper-1.2.1-py3-none-any.whl.metadata (16 kB)
+Collecting jiwer
+  Downloading jiwer-4.0.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: huggingface-hub&lt;2.0,&gt;=1.5.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (1.7.1)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.12/dist-packages (from transformers) (2.0.2)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (26.0)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.12/dist-packages (from transformers) (6.0.3)
+Requirement already satisfied: regex&gt;=2025.10.22 in /usr/local/lib/python3.12/dist-packages (from transformers) (2025.11.3)
+Requirement already satisfied: tokenizers&lt;=0.23.0,&gt;=0.22.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.22.2)
+Requirement already satisfied: typer in /usr/local/lib/python3.12/dist-packages (from transformers) (0.24.1)
+Requirement already satisfied: safetensors&gt;=0.4.3 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.7.0)
+Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.12/dist-packages (from transformers) (4.67.3)
+Requirement already satisfied: psutil in /usr/local/lib/python3.12/dist-packages (from accelerate) (5.9.5)
+Requirement already satisfied: torch&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from accelerate) (2.10.0+cu128)
+Requirement already satisfied: filelock in /usr/local/lib/python3.12/dist-packages (from datasets) (3.25.2)
+Collecting pyarrow&gt;=21.0.0 (from datasets)
+  Downloading pyarrow-23.0.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.1 kB)
+Requirement already satisfied: dill&lt;0.4.2,&gt;=0.3.0 in /usr/local/lib/python3.12/dist-packages (from datasets) (0.3.8)
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (from datasets) (2.2.2)
+Requirement already satisfied: requests&gt;=2.32.2 in /usr/local/lib/python3.12/dist-packages (from datasets) (2.32.4)
+Requirement already satisfied: httpx&lt;1.0.0 in /usr/local/lib/python3.12/dist-packages (from datasets) (0.28.1)
+Requirement already satisfied: xxhash in /usr/local/lib/python3.12/dist-packages (from datasets) (3.6.0)
+Requirement already satisfied: multiprocess&lt;0.70.20 in /usr/local/lib/python3.12/dist-packages (from datasets) (0.70.16)
+Requirement already satisfied: fsspec&lt;=2026.2.0,&gt;=2023.1.0 in /usr/local/lib/python3.12/dist-packages (from fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (2025.3.0)
+Requirement already satisfied: cffi&gt;=1.0 in /usr/local/lib/python3.12/dist-packages (from soundfile) (2.0.0)
+Requirement already satisfied: audioread&gt;=2.1.9 in /usr/local/lib/python3.12/dist-packages (from librosa) (3.1.0)
+Requirement already satisfied: numba&gt;=0.51.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (0.60.0)
+Requirement already satisfied: scipy&gt;=1.6.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.16.3)
+Requirement already satisfied: scikit-learn&gt;=1.1.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.6.1)
+Requirement already satisfied: joblib&gt;=1.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.5.3)
+Requirement already satisfied: decorator&gt;=4.3.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (4.4.2)
+Requirement already satisfied: pooch&gt;=1.1 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.9.0)
+Requirement already satisfied: soxr&gt;=0.3.2 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.0.0)
+Requirement already satisfied: typing_extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from librosa) (4.15.0)
+Requirement already satisfied: lazy_loader&gt;=0.1 in /usr/local/lib/python3.12/dist-packages (from librosa) (0.5)
+Requirement already satisfied: msgpack&gt;=1.0 in /usr/local/lib/python3.12/dist-packages (from librosa) (1.1.2)
+Collecting ctranslate2&lt;5,&gt;=4.0 (from faster-whisper)
+  Downloading ctranslate2-4.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+Collecting onnxruntime&lt;2,&gt;=1.14 (from faster-whisper)
+  Downloading onnxruntime-1.24.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.2 kB)
+Collecting av&gt;=11 (from faster-whisper)
+  Downloading av-17.0.0-cp311-abi3-manylinux_2_28_x86_64.whl.metadata (4.6 kB)
+Requirement already satisfied: click&gt;=8.1.8 in /usr/local/lib/python3.12/dist-packages (from jiwer) (8.3.1)
+Collecting rapidfuzz&gt;=3.9.7 (from jiwer)
+  Downloading rapidfuzz-3.14.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (12 kB)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi&gt;=1.0-&gt;soundfile) (3.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from ctranslate2&lt;5,&gt;=4.0-&gt;faster-whisper) (75.2.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /usr/local/lib/python3.12/dist-packages (from fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (3.13.3)
+Requirement already satisfied: anyio in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1.0.0-&gt;datasets) (4.12.1)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1.0.0-&gt;datasets) (2026.2.25)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1.0.0-&gt;datasets) (1.0.9)
+Requirement already satisfied: idna in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1.0.0-&gt;datasets) (3.11)
+Requirement already satisfied: h11&gt;=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*-&gt;httpx&lt;1.0.0-&gt;datasets) (0.16.0)
+Requirement already satisfied: hf-xet&lt;2.0.0,&gt;=1.4.2 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (1.4.2)
+Requirement already satisfied: llvmlite&lt;0.44,&gt;=0.43.0dev0 in /usr/local/lib/python3.12/dist-packages (from numba&gt;=0.51.0-&gt;librosa) (0.43.0)
+Requirement already satisfied: flatbuffers in /usr/local/lib/python3.12/dist-packages (from onnxruntime&lt;2,&gt;=1.14-&gt;faster-whisper) (25.12.19)
+Requirement already satisfied: protobuf in /usr/local/lib/python3.12/dist-packages (from onnxruntime&lt;2,&gt;=1.14-&gt;faster-whisper) (5.29.6)
+Requirement already satisfied: sympy in /usr/local/lib/python3.12/dist-packages (from onnxruntime&lt;2,&gt;=1.14-&gt;faster-whisper) (1.14.0)
+Requirement already satisfied: platformdirs&gt;=2.5.0 in /usr/local/lib/python3.12/dist-packages (from pooch&gt;=1.1-&gt;librosa) (4.9.4)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests&gt;=2.32.2-&gt;datasets) (3.4.6)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests&gt;=2.32.2-&gt;datasets) (2.5.0)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /usr/local/lib/python3.12/dist-packages (from scikit-learn&gt;=1.1.0-&gt;librosa) (3.6.0)
+Requirement already satisfied: networkx&gt;=2.5.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.6.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.1.6)
+Requirement already satisfied: cuda-bindings==12.9.4 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.9.4)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.8.93 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.93)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.8.90 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.90)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.8.90 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.90)
+Requirement already satisfied: nvidia-cudnn-cu12==9.10.2.21 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (9.10.2.21)
+Requirement already satisfied: nvidia-cublas-cu12==12.8.4.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.3.83 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (11.3.3.83)
+Requirement already satisfied: nvidia-curand-cu12==10.3.9.90 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (10.3.9.90)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.3.90 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (11.7.3.90)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.8.93 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.5.8.93)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.7.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (0.7.1)
+Requirement already satisfied: nvidia-nccl-cu12==2.27.5 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (2.27.5)
+Requirement already satisfied: nvidia-nvshmem-cu12==3.4.5 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.4.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.8.90 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.90)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.8.93 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.8.93)
+Requirement already satisfied: nvidia-cufile-cu12==1.13.1.3 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (1.13.1.3)
+Requirement already satisfied: triton==3.6.0 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.6.0)
+Requirement already satisfied: cuda-pathfinder~=1.1 in /usr/local/lib/python3.12/dist-packages (from cuda-bindings==12.9.4-&gt;torch&gt;=2.0.0-&gt;accelerate) (1.4.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas-&gt;datasets) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas-&gt;datasets) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas-&gt;datasets) (2025.3)
+Requirement already satisfied: shellingham&gt;=1.3.0 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (1.5.4)
+Requirement already satisfied: rich&gt;=12.3.0 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (13.9.4)
+Requirement already satisfied: annotated-doc&gt;=0.0.2 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (0.0.4)
+Requirement already satisfied: aiohappyeyeballs&gt;=2.5.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (2.6.1)
+Requirement already satisfied: aiosignal&gt;=1.4.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (1.4.0)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (25.4.0)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (1.8.0)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (6.7.1)
+Requirement already satisfied: propcache&gt;=0.2.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (0.4.1)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.17.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;=2026.2.0,&gt;=2023.1.0-&gt;datasets) (1.23.0)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;datasets) (1.17.0)
+Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from rich&gt;=12.3.0-&gt;typer-&gt;transformers) (4.0.0)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/local/lib/python3.12/dist-packages (from rich&gt;=12.3.0-&gt;typer-&gt;transformers) (2.19.2)
+Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /usr/local/lib/python3.12/dist-packages (from sympy-&gt;onnxruntime&lt;2,&gt;=1.14-&gt;faster-whisper) (1.3.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.12/dist-packages (from jinja2-&gt;torch&gt;=2.0.0-&gt;accelerate) (3.0.3)
+Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.12/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&gt;=12.3.0-&gt;typer-&gt;transformers) (0.1.2)
+Downloading transformers-5.4.0-py3-none-any.whl (10.1 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m10.1/10.1 MB[0m [31m91.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading datasets-4.8.4-py3-none-any.whl (526 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m527.0/527.0 kB[0m [31m49.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading faster_whisper-1.2.1-py3-none-any.whl (1.1 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.1/1.1 MB[0m [31m77.6 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading jiwer-4.0.0-py3-none-any.whl (23 kB)
+Downloading av-17.0.0-cp311-abi3-manylinux_2_28_x86_64.whl (36.4 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m36.4/36.4 MB[0m [31m29.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading ctranslate2-4.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (39.0 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m39.0/39.0 MB[0m [31m23.6 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading onnxruntime-1.24.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (17.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m17.2/17.2 MB[0m [31m105.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pyarrow-23.0.1-cp312-cp312-manylinux_2_28_x86_64.whl (47.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m47.6/47.6 MB[0m [31m14.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading rapidfuzz-3.14.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (3.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.2/3.2 MB[0m [31m120.4 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: rapidfuzz, pyarrow, ctranslate2, av, onnxruntime, jiwer, datasets, transformers, faster-whisper
+  Attempting uninstall: pyarrow
+    Found existing installation: pyarrow 18.1.0
+    Uninstalling pyarrow-18.1.0:
+      Successfully uninstalled pyarrow-18.1.0
+  Attempting uninstall: datasets
+    Found existing installation: datasets 4.0.0
+    Uninstalling datasets-4.0.0:
+      Successfully uninstalled datasets-4.0.0
+  Attempting uninstall: transformers
+    Found existing installation: transformers 5.0.0
+    Uninstalling transformers-5.0.0:
+      Successfully uninstalled transformers-5.0.0
+Successfully installed av-17.0.0 ctranslate2-4.7.1 datasets-4.8.4 faster-whisper-1.2.1 jiwer-4.0.0 onnxruntime-1.24.4 pyarrow-23.0.1 rapidfuzz-3.14.3 transformers-5.4.0
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+from jiwer import wer, cer
+import time
+import re
+
+audios = [
+    {
+        "file": "test_en_1.wav",
+        "text": "okay let's go let's start our testing",
+        "lang": "en"
+    },
+    {
+        "file": "test_en_2.wav",
+        "text": "now im going to the university so i can work on my project",
+        "lang": "en"
+    },
+    {
+        "file": "test_en_3.wav",
+        "text": "the weather today is sunny and very hot to be honest",
+        "lang": "en"
+    },
+    {
+        "file": "test_en_4.wav",
+        "text": "im really tired i just wanna go home and sleep",
+        "lang": "en"
+    },
+    {
+        "file": "test_en_5.wav",
+        "text": "hello what do you think who is the best singer alive",
+        "lang": "en"
+    },
+    {
+        "file": "test_en_6.wav",
+        "text": "hey siri how to find the purpose of life",
+        "lang": "en"
+    },
+    # ---------- ru
+    {
+        "file": "test_ru_1.wav",
+        "text": "всем привет сегодня у нас погода отличная",
+        "lang": "ru"
+    },
+    {
+        "file": "test_ru_2.wav",
+        "text": "сегодня у нас наурыз и народа тут очень много",
+        "lang": "ru"
+    },
+    {
+        "file": "test_ru_3.wav",
+        "text": "когда мы покупали впервые машину там такой приятный запах",
+        "lang": "ru"
+    },
+    {
+        "file": "test_ru_4.wav",
+        "text": "я люблю гулять ночью потому что ночью обычно тихо на улице",
+        "lang": "ru"
+    },
+    {
+        "file": "test_ru_5.wav",
+        "text": "привет алиса поставь пожалуйста будильник на семь утра",
+        "lang": "ru"
+    },
+    {
+        "file": "test_ru_6.wav",
+        "text": "привет а какова вероятность что лифт упадет",
+        "lang": "ru"
+    },
+    # ---------- mix
+    {
+        "file": "test_mix_1.wav",
+        "text": "вчера у нас была презентация i guess it was cringe",
+        "lang": "mix"
+    },
+    {
+        "file": "test_mix_2.wav",
+        "text": "we planned to go to swimming но там было занято",
+        "lang": "mix"
+    },
+    {
+        "file": "test_mix_3.wav",
+        "text": "я смотрел the first spider man и мне это очень сильно понравилось",
+        "lang": "mix"
+    },
+    {
+        "file": "test_mix_4.wav",
+        "text": "hello hello what will be the погода завтра",
+        "lang": "mix"
+    },
+    {
+        "file": "test_mix_5.wav",
+        "text": "это мне кажется или one plus one is really three",
+        "lang": "mix"
+    },
+    {
+        "file": "test_mix_6.wav",
+        "text": "с днём рождения тебя i wish you all the best",
+        "lang": "mix"
+    },
+]
+
+results = []
+
+def basic_clean(text):
+    text = text.lower()
+    text = re.sub(r'[^\w\s]', '', text)
+    return " ".join(text.split())
+
+def record_result(model_name, audio, pred, duration):
+    audio["text"] = basic_clean(audio["text"])
+    prediction = basic_clean(pred)
+
+    results.append({
+        "Model": model_name,
+        "File": audio["file"],
+        "Language": audio["lang"],
+        "Real": audio["text"],
+        "Predicted": prediction.strip(),
+        "WER": round(wer(audio["text"], prediction), 4),
+        "CER": round(cer(audio["text"], prediction), 4),
+        "Time_Sec": round(duration, 2)
+    })</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [7]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import torch
+from transformers import pipeline
+
+model1 = pipeline(
+    "automatic-speech-recognition",
+    model="openai/whisper-large-v3",
+    torch_dtype=torch.float16,
+    device="cuda"
+)
+
+for audio in audios:
+    start = time.time()
+    output = model1(audio["file"])
+    record_result("Whisper-v3", audio, output["text"], time.time() - start)
+
+del model1
+torch.cuda.empty_cache()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:94: UserWarning: 
+The secret `HF_TOKEN` does not exist in your Colab secrets.
+To authenticate with the Hugging Face Hub, create a token in your settings tab (https://huggingface.co/settings/tokens), set it as secret in your Google Colab and restart your session.
+You will be able to reuse this secret in all of your notebooks.
+Please note that authentication is recommended but still optional to access public models or datasets.
+  warnings.warn(
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">`torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>model.safetensors:   0%|          | 0.00/3.09G [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Loading weights:   0%|          | 0/1259 [00:00&lt;?, ?it/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>generation_config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer_config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>vocab.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>merges.txt: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>normalizer.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>added_tokens.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>special_tokens_map.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>preprocessor_config.json:   0%|          | 0.00/340 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">Using custom `forced_decoder_ids` from the (generation) config. This is deprecated in favor of the `task` and `language` flags/config options.
+Transcription using a multilingual Whisper will default to language detection followed by transcription instead of translation to English. This might be a breaking change for your use case. If you want to instead always translate your audio to English, make sure to pass `language='en'`. See https://github.com/huggingface/transformers/pull/28687 for more details.
+A custom logits processor of type &lt;class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'&gt; has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom &lt;class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'&gt; will take precedence. Please check the docstring of &lt;class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'&gt; to see related `.generate()` flags.
+A custom logits processor of type &lt;class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'&gt; has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom &lt;class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'&gt; will take precedence. Please check the docstring of &lt;class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'&gt; to see related `.generate()` flags.
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>from faster_whisper import WhisperModel
+import time
+
+model2 = WhisperModel("large-v3", device="cuda", compute_type="float16")
+
+for audio in audios:
+    start = time.time()
+
+    segments, info = model2.transcribe(audio["file"], beam_size=1)
+
+    pred = "".join([segment.text for segment in segments])
+
+    record_result("Faster-Whisper-V3", audio, pred, time.time() - start)
+
+del model2
+torch.cuda.empty_cache()</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [9]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import torch
+from transformers import pipeline
+
+model3 = pipeline(
+    "automatic-speech-recognition",
+    model="openai/whisper-large-v3-turbo",
+    torch_dtype=torch.float16,
+    device="cuda"
+)
+
+for audio in audios:
+    start = time.time()
+    result = model3(audio["file"])
+    record_result("Whisper-Turbo", audio, result["text"], time.time() - start)
+
+del model3
+torch.cuda.empty_cache()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>model.safetensors:   0%|          | 0.00/1.62G [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Loading weights:   0%|          | 0/587 [00:00&lt;?, ?it/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>generation_config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer_config.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>vocab.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>merges.txt: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>normalizer.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>added_tokens.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>special_tokens_map.json: 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>preprocessor_config.json:   0%|          | 0.00/340 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">dalwe rezy</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [10]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame(results)
+
+plt.figure(figsize=(10, 6))
+sns.set_style("whitegrid")
+plot = sns.barplot(data=df, x="Model", y="WER", hue="Language", palette="viridis")
+plt.title("ASR Performance: Word Error Rate (Lower is Better)")
+plt.ylabel("WER (0.0 - 1.0)")
+plt.show()
+
+df_sorted = df.sort_values(by=["WER", "CER", "Time_Sec"], ascending=[True, True, True])
+
+display(df_sorted[["Model", "Language", "WER", "CER", "Time_Sec", "Predicted"]].reset_index(drop=True))</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <img class="output-image" src="data:image/png;base64,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tVO7du0kyf7B//fff1fv3r1VsWJFDRo0SCVLltSGDRs0dOhQTZ8+3b5+dtLT07V371717t3b6ecj5ewYadKkidzc3LRjxw7Vr19fkrRjxw65u7s7DEZx7tw5xcfHq2/fvvZ5H3/8sT788EN16NBBjz76qM6dO6dPP/1Uffr0yfIa/f333xo0aJA6deqkhx56SL6+vjl+Hr///ruGDBmigIAAPf/88/L09NSxY8ey7c6anYyMDPsxmpaWpl9//VXz589X06ZNVb16dYd2zF6rpk2bql+/foqOjtZTTz2lOnXqSJLq1q2rcePG6Y033lDJkiX11FNPSZL8/PwkXX2f9O3bV6dPn1avXr1UuXJl7d69W++9957OnDmj8ePHZ3ntbnT+bNiwob755hslJSXl6B90QIFkACgQ9u7da/j7+xs//PCDYRiGYbPZjNatWxuTJk1yWC8lJcV44IEHDH9/f+O+++4zxowZYyxfvtw4e/Zslm1OmzbN8Pf3N+Lj443ExEQjISHB+O9//2uEhIQYzZs3N5KTk03rGj16tBEaGmokJiYaiYmJxrFjx4xPPvnECAgIMLp06WIYhmHExMQY9evXN7Zv3+7w2CVLlhj+/v7Gzp077fP8/f2N+vXrG7///nuWtu677z5j8ODBDvMWLFhg+Pv7G6tXr7bPS0tLM3r27GmEhoYaly5dMgzDME6cOGH4+/sbjRs3NhITE7PdD6+88op9XkZGhtG6dWsjICDAmDVrln3+hQsXjJCQEGP06NEO6165csVhmxcuXDBatmxpjB071j4vs4ZmzZoZf//9t33+119/bfj7+xvffvutfV6fPn2MsLAw4+TJkw7btdls9t/HjRtn3H333ca5c+cc1hk+fLjRpEkTIyUlxT6vb9++hr+/v5ETLVq0MB5//HH79IABA4wxY8YYhmEYw4YNM55//nn7sqioKKN9+/aGYVzd7y1atDA6d+5spKam2tf53//+Z/j7+xsffvihfd7o0aMNf39/491333Voe//+/Ya/v78xYcIEh/kvvvii4e/vb0ybNu2mtWfu4xv97N69277ufffdZ/j7+xvfffedwza2bt1q+Pv7G/fff7/DPsyN53cjK1asMPz9/Y0ff/zRSExMNE6dOmVs3LjRaN68uREUFGScOnXKvm5Oj7fExMQb7rPHH3/c6Ny5s8N2bDab0bNn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evbZZzV27Fht2LBBnTp1uu36a9SooQMHDqhFixa3NFjFzVStWlUHDx6UzWZz+JAaHx8vKetVpLzwxRdfqHr16poxY4bD87vVL4TMvDH8t99+u+E6Pj4+KlWqlGw2W46urDijQYMG9nDk6emp0NBQ+/MqVqyYgoODtWvXLiUkJMjX19d+9SBzXx85ciTLf7CPHDmSo9eiatWqstlsOn78uMNVpszX05Vy4/k5w2Kx6MUXX1T//v21ePFi+wAZOT3ebvReyzy+PDw8bunYqVy5skqUKJHtF62acWYfVqlSRVWqVNHOnTt14sQJe5fW8PBwTZ48WRs3bpTVarUP0iJdPdcYhqFq1aple1Urt7m7u9u7KY8dO1affPKJ3n//fcXFxd3Svs3IyJB0tfuz5NxrdbNz642W1ahRQ8nJyblyDklISJC7u/sd2e+Aq3CPE5DPpaam6ssvv9S9996rBx98MMtPnz59dPnyZX377beSro7Gll0XrZMnT+rw4cM5+qPWpUsXVapUSXPmzMmV59ChQwedPn1an332WZZlqamp9g8Jt6J169Y6c+aM1q9fb5+XkZGh6OholSxZ0uFDVV7J/M/ytVeMfv75Z/3000+3tD0fHx81bdpUK1asyNLVMLMNi8WiBx54QF988UW2Aev6YyCnw5FLV8NRSEiIdu3apV27diksLMxheVhYmHbs2OFw75MkBQUFydfXV0uXLnW4l27z5s06fPiw7r33XtO2M7+0Njo62mH+woULc1R7XsqN5+esiIgIhYSEaOHChbpy5YqknB9vmfcoXn9lyNfXV82aNdOyZcv0119/ZWnTrIunh4eHgoKC9Msvvzj9fJzdh02aNNHWrVu1Z88e+xWowMBAlSpVSrNnz1aJEiXUsGFD+/rt27eXxWLRjBkzslzBNQwjV++/ub67bmZtkrK9lzQn/ve//0mSfSRBZ16rzNf70qVLWdbz8vLK9gphhw4dtHv3bm3ZsiXLsosXL9qDXE7s27dP9erVU5kyZXL8GKCg4YoTkM99++23unz5siIjI7NdHhoaKh8fH61Zs0YdO3bUDz/8oOnTpysyMlKNGjVSyZIllZCQoBUrVigtLU3PPfecaZseHh7q37+/pkyZou+++87+YfZWde3aVRs2bNBrr72muLg4NW7cWFarVfHx8dq4caPmzp1r757krJ49e2rZsmUaM2aM9u3bp6pVq+qLL77Qrl27NG7cuDsyLO69996rL7/8UkOHDtW9996rhIQELV26VPXq1bvlUPjyyy+rd+/eeuSRR9SzZ09Vq1ZNJ0+e1KZNm7R69WpJ0ogRIxQXF6cePXqoe/fuqlevni5cuKB9+/YpNjZW27Zts28vp8ORZ2rSpIn9RvrrvxMsLCxMs2bNsq+XycPDQyNHjtTYsWPVt29fderUyT7UdNWqVR2GR7+RwMBAde7cWf/5z3906dIlhYWFaevWrTp27FiO6s7066+/2vfTtWrUqJElCOZUbjy/WzFw4EANGzZMK1euVO/evXN8vJUoUUL16tXThg0bVKtWLZUrV07/+Mc/5O/vr9dee02PPfaYunTpoh49eqh69eo6e/asfvrpJ/35559as2bNTWu6//779f7772c79HR6enqWrxiQrl717tOnj1P7MDw8XGvXrpWbm5v9WLNYLAoLC9P333+vZs2aOdyjVKNGDb3wwguaOnWqTp48qbZt26pUqVJKSEjQ119/rR49etgHzrldM2fO1I4dO9SmTRtVrVpViYmJ+s9//qNKlSrlqPvq6dOn7cdoenq6Dhw4oGXLlsnb29thcJScvlaBgYGyWCyaM2eOLl26JE9PTzVv3ly+vr5q2LChlixZoo8++kg1a9aUj4+PWrRooYEDB+rbb7/VU089pUceeUQNGzZUSkqKfvvtN33xxRf65ptvbjgYxLXS09O1ffv2Wx6iHigoCE5APrdmzRoVL15cd999d7bL3d3dde+992rt2rU6f/682rdvr8uXL+uHH37Q1q1bdeHCBd11110KCQnRk08+aR/JzkzPnj318ccfa86cObcdnNzd3TVz5kwtWLBAq1ev1ldffSUvLy9Vq1ZN/fr1u62uHSVKlFB0dLTeffddrVq1SklJSapdu7YmT558y6NlOSsqKkpnz57VsmXL9P3336tevXp65513tHHjRofw4oz69evrs88+04cffqglS5boypUrqlKlijp06GBfx8/PT8uXL9fMmTP11VdfacmSJSpXrpzq1at3S1+2eq3MD36ZXfOuFRYWJjc3NxmGkeUDYlRUlEqUKKE5c+bo3XffVcmSJdW2bVu99NJLOR6F7c0335S3t7fWrl2rb775RhEREZo9e7batGmT4/o///xzff7551nmP/LII7ccnKTceX7Oat++vWrUqKF58+apR48eTh1vkyZN0htvvKHJkycrPT1dzz77rPz9/VWvXj2tWLFCM2bM0KpVq/T333/Lx8dHDRo00NChQ01r6tq1q6ZOnapvvvlGXbt2dViWnp6e7UAGNWrUUJ8+fZzah5nd8+rUqeNw70x4eLi+//57+/JrDR48WLVq1dKCBQvsI3tWqlRJd9999w3/AXUrIiMjdfLkSa1YsULnz5+Xt7e3mjVrpueeey5HV13279+vUaNGSbp6jvT29lb79u01bNgwh8EecvpalS9fXhMnTtSsWbM0fvx4Wa1WLVq0SL6+vho6dKj++OMPzZ07V5cvX1azZs3UokULeXl5KTo6WrNmzdLGjRsVExOj0qVLq1atWjl+HpIUGxurv//++4b3WwKFhZvBMCgAAMBJ48aN09GjR/Wf//zH1aXAxTK/bD0zqAKFFfc4AQAApz377LPau3dvlmHYUbQcPnxYmzZt0rBhw1xdCpDnuOIEAAAAACa44gQAAAAAJghOAAAAAGCC4AQAAAAAJghOAAAAAGCiyH2Pk81mU0ZGhtzd3eXm5ubqcgAAAAC4iGEYstlsKlasmNzdb35NqcgFp4yMDO3du9fVZQAAAADIJ4KDg+Xp6XnTdYpccMpMksHBwbJYLC6uBgAAAICrWK1W7d271/Rqk1QEg1Nm9zyLxUJwAgAAAJCjW3gYHAIAAAAATBCcAAAAAMAEwQkAAAAATBS5e5xywjAMZWRkyGq1urqUAsNisahYsWIM8Q4AAIBCieB0nbS0NJ06dUrJycmuLqXAKVmypCpXrmw6lCMAAABQ0BCcrmGz2XTkyBFZLBZVqVJFnp6eXEHJAcMwlJaWpjNnzujIkSP6xz/+kaMhHQEAAICCguB0jbS0NNlsNlWvXl0lS5Z0dTkFipeXlzw8PHTs2DGlpaWpRIkSri4JAAAAyDVcFsgGV0tuDfsNAAAAhRWfdAEAAADABMEJAAAAAEwQnAAAAADABMHJCWPGjNEzzzzj6jIAAAAA3GEEJwAAAAAwQXDKJfPnz1eXLl0UGhqqNm3aaMKECbp8+bJ9+cqVKxUeHq4tW7aoQ4cOCgsL08CBA/XXX3/Z18nIyNCkSZMUHh6uiIgIvfPOOxo9erTDVa7IyEgtWLDAoe2uXbtq+vTpOa5Fkj777DO1adNGjRo10tChQzV//nyFh4c7rPP111/rkUceUXBwsO6//37NmDFDGRkZubG7AAAAgAKF4JRL3NzcNH78eH3++ed66623tHXrVr3zzjsO66SmpmrevHmaMmWKPv30U506dUpvv/22ffmcOXO0du1aTZ48Wf/5z3+UlJSkr7/+Otdr2blzp1577TX1799fMTExatmypT755BOHbezYsUOjR49W//79tX79er3++utauXJllvUAAACAooDglEueeOIJNW/eXNWqVVOLFi30wgsvaMOGDQ7rpKena+LEiQoODlbDhg3Vp08fbd261b78008/1eDBg9WuXTvVrVtXr776qu66665cr+XTTz9V69atNXDgQNWuXVt9+vTRPffc47CNGTNmaPDgwXrkkUdUvXp13X333Ro2bJiWLl3qdD0AAABAQVfM1QUUFj/++KNmzZql+Ph4JSUlyWq16sqVK0pJSZGXl5ckycvLSzVq1LA/pkKFCkpMTJQkXbp0SWfPnlVISIh9ucViUcOGDWWz2XK1liNHjqht27YOjwkJCdGmTZvs0wcOHNCuXbscrjBl95wAAACAooDglAsSEhI0ZMgQ9e7dW8OHD1fZsmW1c+dOjR8/Xunp6faQUayY4+52c3OTYRhOteXm5pZl3rX3HeW0FjPJycl67rnn1L59+yzLihcv7lTNAAAAQEFHV71csG/fPhmGoTFjxig0NFS1a9d2GPQhJ8qUKSM/Pz/t3bvXPs9qterXX391WM/Hx8dh20lJSUpISHCqltq1a+uXX35xmHdtu5LUoEEDHTlyRDVr1szy4+7OYQMAQEEzc+ZMtWvXTjNnznR1KcjHOE5ujCtOTrp06ZL279/vMM/b21vp6emKjo5WZGSkdu7ceUv3AvXt21ezZs1SjRo1VKdOHX366ae6cOGCw1Wm5s2ba9WqVYqMjFSZMmU0bdo0hyBTs2ZN01r69u2rvn37av78+brvvvu0detWfffddw7tDB06VE899ZSqVKmiBx54QO7u7jpw4IB+++03DR8+3OnnBgAAXCc1NVUxMTGy2WyKiYnRwIEDVaJECVeXhXyG4+TmCE5O2rZtmx5++GGHeY8++qjGjh2rOXPm6L333lN4eLhefPFFjR492qltDxo0SGfPntXo0aNlsVjUo0cPtWrVShaLxb7OkCFD7N3xypQpo2HDhjlccapfv75pLU2aNNHEiRM1Y8YMffDBB2rVqpWe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J9vfVxaLxaltZ57XUHBwxQl5qk6dOipfvrzDh5ht27bp/vvvV7Vq1fTTTz85zL/2g8358+c1dOhQNWrUSO3bt9c333xjX3b9f7FPnjypp556Sk2bNlVoaKg6deqkzZs3O6y7adMmdenSRcHBwerRo4d+++03h1p37Nihxx57TCEhIWrTpo0mTZqk5ORk+/LIyEjNnDlTo0aNUuPGjfXqq686PP7IkSMKCAjQ4cOHHeYvWLBAbdu2lXT1A81jjz2m4OBgVa1aVS1atNBjjz2mHTt23MruBXJd5geVa38WLVqkLl26KDQ0VG3atNGECRN0+fJl+2Nu9P5LSEhQ//79JUlNmzZVQECAxowZI0my2WyaNWuWIiMjFRISooceekgbN260bzPzfbt582ZFRUUpODhYO3fudKj12g9rmbZt26ZBgwbZP6xJ0pUrV/Tzzz9nCU779u1TVFSUGjVqpF69eik+Pt6+7PquM3FxcXr00UcVGhqq8PBw9erVSydPnnRYd+nSpWrTpo0aNWqkYcOG6dKlSw7tLV++XB06dFBwcLAefPBBLV682L4sISFBAQEBWr9+vfr27avg4GCtXbvW4fGPPvqoYmNj9ccffzjM37hxo6xWq7p06WLfL+3atVPdunVVo0YNPf744woICMiy/4DcUlT+1pcpU8bh3ChJd911l8qXL68rV66oRYsW2r9/v339ixcvKiAgQHFxcQ413ui8drNziM1m04wZM9S6dWsFBQWpa9eu+u6775x4lZAbCE7IcxEREfaThnT1xNGsWTM1bdrUPj81NTXLB5sZM2aoQ4cOWrNmjVq3bq2RI0fq77//zraN119/XWlpafr000+1du1ajRw5UiVLlnRYZ8qUKRozZoz++9//ysfHR0899ZTS09MlScePH9egQYPUvn17rVmzRu+//7527typN954w2Eb8+bNU/369RUTE6NnnnnGYVnt2rUVFBSU5cPOmjVr1Llz52zrPn36tL766is1bdr0JnsQcC03NzeNHz9en3/+ud566y1t3bpV77zzjn35jd5/lStXtneZ27hxo77//nuNHz9ekjRr1izFxMRo4sSJWrdunZ544gm99NJLWa4UTZ06VSNGjND69esVEBDgsKx27dqqUKGC/TySlJSkX3/9VR06dFDVqlW1e/duSdKuXbuUlpaWJTi9//77GjNmjFasWCGLxaJx48Zl+/wzMjI0dOhQNW3aVGvWrNGyZcvUs2dPubm52dc5fvy4NmzYoE8++URz587V/v37NWHCBPvyNWvW6MMPP9Tw4cO1fv16vfjii5o2bZpWrVrl0Na7776r/v37a/369WrVqpXDsjZt2sjX11crV650mL9y5Uq1a9dOd911V5baDcNQbGysjhw5wnkGeaqo/K3PDdmd18zOIYsWLdL8+fM1evRorVmzRq1atdIzzzyjo0eP5np9uAkDyGOfffaZERoaaqSnpxuXLl0yGjRoYCQmJhpr1641+vTpYxiGYfz444+Gv7+/cfLkScMwDMPf3994//337du4fPmy4e/vb2zevNkwDMPYunWr4e/vb1y4cMEwDMPo3LmzMX369Gzbz1x33bp19nnnz583QkJC7PPGjRtnvPLKKw6P2759u1G/fn0jNTXVMAzDuO+++4xnnnnmps91/vz5Rtu2be3T8fHxhr+/v3Ho0CGH9YYPH26EhIQY/v7+xpAhQ+xtAK40evRoIzAw0AgNDbX/PPfcc1nW27Bhg9GsWTP7dE7ef5nvVcMwjCtXrhiNGjUydu3a5bDuuHHjjBdffNHhcV999dVNax4xYoQxYMAAwzAMY9OmTUbHjh0NwzCMV155xfjwww8NwzCMDz74wIiMjMxS048//mift2nTJsPf39/+Xpw2bZrx0EMPGYZx9Xzh7+9vxMXFZVvDtGnTjMDAQOPPP/+0z9u8ebNRv35946+//jIMwzDatm1rrF271uFxM2fONHr27GkYhmGcOHHC8Pf3NxYsWHDT5/vuu+8akZGRhs1mMwzDMI4dO2YEBAQ4PBfDMIyLFy8aoaGhRoMGDYygoCBj+fLlN90ucLuK0t/6TNeeozLfw7/++qt9+YULFwx/f39j69atDjVef17LyTmkVatWxscff+zwuG7duhkTJkzIUa3IHdzjhDzXrFkzJScna+/evbp48aJq1aolHx8fNW3aVGPHjtWVK1e0bds2Va9eXVWqVLE/7tr/LpcsWVKlS5fWuXPnsm2jf//+mjBhgr7//nu1bNlS7du3V/369R3Wyex3LUnlypVT7dq17V1zDhw4oIMHDzpcLTIMQzabTQkJCapbt64kKSgoyL781VdfdVh/9+7d6tSpk6ZMmaKffvpJoaGhWrt2rRo2bGh/fKaxY8dq6NChOnr0qN577z1NnjzZ4T9LgKtEREQ4HIteXl768ccfNWvWLMXHxyspKUlWq1VXrlxRSkqKvLy8cvT+u9axY8eUkpKiAQMGOMxPT09XYGCgw7zg4GD772FhYfbfu3Tpotdff10RERF68803lZ6ebv8Pt3S1a+CyZcskZe0alOnac0xmt5vExESH85B09XwRFRWlgQMH6u6771aLFi3UoUMHVahQwb5O5cqVVbFiRYdabTabjhw5olKlSun48eMaP368XnnlFfs6GRkZWW56v/Yc06lTJ3u3vCZNmmju3Lnq1q2bZs+era1bt6pFixZasWKFqlatqubNmztsp1SpUoqJiVFycrJiY2P11ltvqXr16k7d5wU4oyj9rb9d157XMt3sHOLl5aW//vpLjRs3dnhM48aNdeDAgduuBzlHcEKeq1mzpipVqqS4uDhduHDB3l2kYsWKqly5snbt2qW4uLgsf/gzb4rO5ObmJpvNlm0b3bt3V6tWrbRp0yb98MMPmj17tkaPHp1lNJ8bSU5OVq9evbJdv3Llyvbfvby87L8PGzYsy4he5cuXV/PmzfX5558rNDRUn3/+uXr37p1lm5n9o+vWrauyZcuqT58+euaZZxw+iAGu4OXlpZo1a9qnExISNGTIEPXu3VvDhw9X2bJltXPnTo0fP17p6eny8vJy+v2XeT/BrFmzHD4oSMoy4Mq177lrR4YrXbq0pP+7z2nv3r2Ki4uzvyebNWumcePG6e+//9bPP/+snj17Zqnj2oEmMrvd3egcM3nyZPXr109btmzRhg0b9MEHH2j+/PkOH9JuJPP5vvHGG2rUqJHDMnd3xx7z13Y7mj17tn2UshIlSkiSatWqpfDwcK1cuVIRERFavXq1unfv7tBtMHO7ma9jYGCgDh8+rNmzZxOckGeK0t/67GS+lw3DsM+7dpTBa127fRQsBCfcEREREdq2bZsuXLjgcAIKDw/Xd999pz179mQbMJxRuXJl9e7dW71799bUqVP12WefOZwcf/rpJ/t/uS5cuKCjR4+qTp06kqQGDRro0KFDDh8Yzfj6+srX1zfL/C5duuidd95Rp06ddOLECXXs2PGm28k8yaalpeW4beBO2bdvnwzD0JgxY+wfDDZs2JBlvRu9/zI/FF07clTdunXl6empP/74w36FKCeye3/WqFFDlStX1rfffqsDBw7Yt1exYkVVrFhR8+fPV3p6eq4EhgYNGqhBgwYaMmSIevbsaf8HiSSdOnVKp0+ftgfBn376Se7u7qpdu7b8/PxUoUIFnThxQg899FCO26tatWq28x999FFNmDBBkZGROn36tKKioky3ZbPZOMcgzxWlv/XXyxx99MyZM/Z51w4UYeZm55DSpUurQoUK2rVrl8M5c9euXQoJCclxG7h9DA6BOyIiIkI7d+50+GAjXf2v8LJly277g82//vUvbdmyRSdOnNC+ffsUFxeXpXvcRx99pNjYWP32228aM2aMvL297aPdDRo0SLt379brr7+u/fv36+jRo/r666/1+uuvO11Lu3btdPnyZU2YMEEREREO/1HfvHmzVqxYod9++00JCQnatGmTXnvtNTVu3FjVqlW75ecP5JWaNWsqPT1d0dHROnHihGJiYrR06VKHdW72/qtatarc3Ny0adMmnTt3TpcvX1bp0qU1YMAATZ48WatWrdLx48e1b98+RUdHZxksISciIiL0n//8RzVq1JCfn599ftOmTRUdHa1atWplubLljBMnTmjq1KnavXu3Tp48qe+//97hw5gkFS9eXGPGjNGBAwe0Y8cOTZo0SR06dLB3AXz++ec1e/ZsLVq0SEeOHNHBgwe1YsUKzZ8/3+l6HnzwQRUrVkyvvfaa7r77bof/lEtXr+T98MMPOnHihA4fPqx58+ZpzZo1ToU24FYUpb/11ytRooRCQ0M1e/ZsHT58WNu2bdMHH3yQ48ebnUMGDhyoOXPmaP369YqPj9e7776rAwcO2EcuxZ3BFSfcEREREUpNTVWdOnWyfLC5fPmyfXSsW2Wz2fT666/rzz//VOnSpXXPPfdo7NixDuuMGDFC//rXv3T06FEFBgbq448/tncLql+/vqKjo/XBBx/osccekyRVr17d9GpRdkqXLq377rtPGzZs0JtvvumwrHjx4lq+fLkmT56stLQ0Va5cWe3atdPgwYNv8ZkDeat+/foaO3as5syZo/fee0/h4eF68cUXNXr0aPs6N3v/VaxYUc8995ymTp2qsWPH6uGHH9Zbb71l/y6zWbNmKSEhQWXKlFGDBg301FNPOV1jRESEYmJisly9atasmVauXHnDUS1zysvLS/Hx8Vq1apX+/vtvVahQQX369FGvXr3s69SoUUPt2rXToEGDdOHCBd1777167bXX7Mu7d++uEiVK6N///remTJmikiVLyt/fX48//vgt1dOpUyctW7ZM3bp1y7I8OTlZEydO1J9//qkSJUqoTp06euedd27pfAY4oyj9rc/Om2++qfHjxysqKkq1a9fWSy+9lOVezhsxO4f0799fSUlJeuutt3Tu3DnVrVtXH330kWrVqpUrtSNn3IxrO2MChVBcXJz69++v7du3ZztcLwDcjunTp+vrr7/W6tWrXV0KUGTxtx53Al31AAAAAMAEwQkAAAAATNBVDwAAAABMcMUJAAAAAEwQnAAAAADABMEJAAAAAEwQnAAAAADABMEJAAAAAEwQnAAA+P/i4uIUEBCgixcv5vgxkZGRWrBgQd4VBQDIFwhOAIACY8yYMQoICNCrr76aZdnEiRMVEBCgMWPGuKAyAEBhR3ACABQolStX1vr165Wammqfd+XKFX3++eeqUqWKCysDABRmBCcAQIHSoEEDVa5cWV9++aV93pdffqnKlSsrMDDQPi8tLU2TJk1SixYtFBwcrN69e2vPnj0O29q8ebMeeOABhYSEqF+/fjp58mSW9nbs2KHHHntMISEhatOmjSZNmqTk5OS8e4IAgHyJ4AQAKHC6deumlStX2qdXrFihqKgoh3WmTJmiL774Qm+99ZZWrVqlmjVr6p///Kf+/vtvSdKpU6f07LPP6r777lNMTIy6d++uqVOnOmzj+PHjGjRokNq3b681a9bo/fff186dO/XGG2/k+XMEAOQvBCcAQIHz0EMPaefOnTp58qROnjypXbt26aGHHrIvT05O1tKlSzVq1Ci1adNG9erV0xtvvKHixYvrv//9ryRpyZIlqlGjhsaMGaM6derooYce0iOPPOLQzqxZs9SlSxc98cQTqlWrlho3bqzx48crJiZGV65cuaPPGQDgWsVcXQAAAM7y8fHRvffeq1WrVskwDN17773y8fGxLz9+/LjS09PVuHFj+zwPDw+FhITo8OHDkqTDhw8rJCTEYbuhoaEO0wcOHNDBgwe1du1a+zzDMGSz2ZSQkKC6devmwbMDAORHBCcAQIHUrVs3vf7665Kk1157LU/aSE5OVq9evdSvX78syypXrpwnbQIA8ieCEwCgQLrnnnuUnp4uNzc3tWrVymFZjRo15OHhoV27dqlq1aqSpPT0dO3du1ePP/64JKlu3br69ttvHR73888/O0w3aNBAhw4dUs2aNfPwmQAACgLucQIAFEgWi0UbNmzQ+vXrZbFYHJaVLFlSvXv31pQpU/Tdd9/p0KFDeuWVV5SamqpHH31UktSrVy8dPXpUb7/9tuLj47V27VqtWrXKYTuDBg3S7t279frrr2v//v06evSovv76a/uVLgBA0cEVJwBAgVW6dOkbLhs5cqQMw9CoUaN0+fJlBQUFae7cuSpbtqwkqUqVKpo+fbomT56sTz/9VCEhIRo+fLjGjRtn30b9+vUVHR2tDz74QI899pgkqXr16urYsWPePjEAQL7jZhiG4eoiAAAAACA/o6seAAAAAJggOAEAAACACYITAAAAAJggOAEAAACACYITAAAAAJggOAEAAACACYITAAAAAJggOAEAAACACYITAAAAAJggOAEAAACACYITAAAAAJj4f6Ct6A3869oFAAAAAElFTkSuQmCC
+" alt="Output" />
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+  <div id="df-74aebe0f-7929-4d04-9d38-aaa179a19e2a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model</th>
+      <th>Language</th>
+      <th>WER</th>
+      <th>CER</th>
+      <th>Time_Sec</th>
+      <th>Predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.54</td>
+      <td>всем привет сегодня у нас погода отличная</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.59</td>
+      <td>now im going to the university so i can work o...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.59</td>
+      <td>the weather today is sunny and very hot to be ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.60</td>
+      <td>привет а какова вероятность что лифт упадет</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.63</td>
+      <td>я люблю гулять ночью потому что ночью обычно т...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.64</td>
+      <td>вчера у нас была презентация i guess it was cr...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.08</td>
+      <td>всем привет сегодня у нас погода отличная</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.18</td>
+      <td>the weather today is sunny and very hot to be ...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.20</td>
+      <td>это мне кажется или one plus one is really three</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.21</td>
+      <td>всем привет сегодня у нас погода отличная</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.24</td>
+      <td>the weather today is sunny and very hot to be ...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.28</td>
+      <td>hello what do you think who is the best singer...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.29</td>
+      <td>я смотрел the first spider man и мне это очень...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.35</td>
+      <td>now im going to the university so i can work o...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.43</td>
+      <td>привет а какова вероятность что лифт упадет</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.53</td>
+      <td>hello what do you think who is the best singer...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.53</td>
+      <td>я люблю гулять ночью потому что ночью обычно т...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.60</td>
+      <td>я люблю гулять ночью потому что ночью обычно т...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.62</td>
+      <td>привет а какова вероятность что лифт упадет</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.74</td>
+      <td>okay lets go lets start our testing</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>3.17</td>
+      <td>okay lets go lets start our testing</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>4.11</td>
+      <td>okay lets go lets start our testing</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.1000</td>
+      <td>0.0227</td>
+      <td>0.88</td>
+      <td>с днем рождения тебя i wish you all the best</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.1000</td>
+      <td>0.0417</td>
+      <td>0.56</td>
+      <td>это мне кажется или one plus one is really free</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.1111</td>
+      <td>0.0444</td>
+      <td>0.58</td>
+      <td>сегодня у нас наврез и народа тут очень много</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.1111</td>
+      <td>0.0444</td>
+      <td>1.21</td>
+      <td>сегодня у нас наврез и народа тут очень много</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.1111</td>
+      <td>0.0500</td>
+      <td>1.17</td>
+      <td>hi siri how to find the purpose of life</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.1111</td>
+      <td>0.0500</td>
+      <td>1.24</td>
+      <td>hi siri how to find the purpose of life</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.1111</td>
+      <td>0.0702</td>
+      <td>0.62</td>
+      <td>когда мы покупали впервые машину там был такой...</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.1111</td>
+      <td>0.0702</td>
+      <td>1.29</td>
+      <td>когда мы покупали впервые машину там был такой...</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.1111</td>
+      <td>0.0702</td>
+      <td>1.48</td>
+      <td>когда мы покупали впервые машину там был такой...</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Whisper-Turbo</td>
+      <td>ru</td>
+      <td>0.1250</td>
+      <td>0.0741</td>
+      <td>0.62</td>
+      <td>привет алиса поставь пожалуйста будильник на 7...</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.1250</td>
+      <td>0.0741</td>
+      <td>1.53</td>
+      <td>привет алиса поставь пожалуйста будильник на 7...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Faster-Whisper-V3</td>
+      <td>ru</td>
+      <td>0.1250</td>
+      <td>0.0741</td>
+      <td>1.57</td>
+      <td>привет алиса поставь пожалуйста будильник на 7...</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.1538</td>
+      <td>0.0345</td>
+      <td>1.38</td>
+      <td>now i am going to the university so i can work...</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.1667</td>
+      <td>0.0154</td>
+      <td>0.61</td>
+      <td>я смотрел the first spiderman и мне это очень ...</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.1667</td>
+      <td>0.0154</td>
+      <td>1.36</td>
+      <td>я смотрел the first spiderman и мне это очень ...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>0.2000</td>
+      <td>0.0870</td>
+      <td>0.68</td>
+      <td>im really tired i just want to go home and sleep</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Faster-Whisper-V3</td>
+      <td>en</td>
+      <td>0.2000</td>
+      <td>0.0870</td>
+      <td>1.22</td>
+      <td>im really tired i just want to go home and sleep</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Whisper-v3</td>
+      <td>en</td>
+      <td>0.2000</td>
+      <td>0.0870</td>
+      <td>1.34</td>
+      <td>im really tired i just want to go home and sleep</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Whisper-v3</td>
+      <td>ru</td>
+      <td>0.2222</td>
+      <td>0.0667</td>
+      <td>1.17</td>
+      <td>сегодня у нас наврез и народу тут очень много</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.2500</td>
+      <td>0.3571</td>
+      <td>1.09</td>
+      <td>hello hello what will be the weather tomorrow</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.2500</td>
+      <td>0.3571</td>
+      <td>1.27</td>
+      <td>hello hello what will be the weather tomorrow</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.3000</td>
+      <td>0.1818</td>
+      <td>1.09</td>
+      <td>с днём рождения тебя а ещё и all the best</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>0.3333</td>
+      <td>0.1750</td>
+      <td>0.64</td>
+      <td>hi sri how to find the proposal of life</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.5000</td>
+      <td>0.3600</td>
+      <td>1.64</td>
+      <td>вчера у нас была презентация а я здесь вот хрень</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.5000</td>
+      <td>0.3600</td>
+      <td>1.72</td>
+      <td>вчера у нас была презентация а я сидел скрынч</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.6000</td>
+      <td>0.2727</td>
+      <td>1.43</td>
+      <td>с днём рождения тебя а я ищу altebest</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.6000</td>
+      <td>0.5319</td>
+      <td>0.63</td>
+      <td>мы планируем идти на спирт но там было занято</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.6000</td>
+      <td>0.5319</td>
+      <td>1.31</td>
+      <td>мы планируем пойти на воду но там было занято</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Whisper-v3</td>
+      <td>mix</td>
+      <td>0.6000</td>
+      <td>0.5319</td>
+      <td>1.81</td>
+      <td>мы планируем пойти на воду но там было занято</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Faster-Whisper-V3</td>
+      <td>mix</td>
+      <td>0.6000</td>
+      <td>0.5417</td>
+      <td>1.27</td>
+      <td>это мне кажется или 1 плюс 1 это действительно 3</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Whisper-Turbo</td>
+      <td>mix</td>
+      <td>0.7500</td>
+      <td>0.6190</td>
+      <td>0.56</td>
+      <td>привет привет как будет погода завтра</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Whisper-Turbo</td>
+      <td>en</td>
+      <td>1.0000</td>
+      <td>0.8846</td>
+      <td>0.76</td>
+      <td>привет что вы думаете кто лучший сцентр в жизни</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-74aebe0f-7929-4d04-9d38-aaa179a19e2a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-74aebe0f-7929-4d04-9d38-aaa179a19e2a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-74aebe0f-7929-4d04-9d38-aaa179a19e2a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [11]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+
+model_summary = (
+    df.groupby("Model")
+      .agg({
+          "WER": "mean",
+          "CER": "mean",
+          "Time_Sec": "mean"
+      })
+      .reset_index()
+      .sort_values("WER")
+)
+
+print(model_summary)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">               Model       WER       CER  Time_Sec
+2         Whisper-v3  0.160339  0.104728  1.528333
+0  Faster-Whisper-V3  0.170117  0.129594  1.438889
+1      Whisper-Turbo  0.199844  0.142556  0.692778
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [12]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>wer_lang = (
+    df.groupby(["Model", "Language"])["WER"]
+      .mean()
+      .reset_index()
+)
+
+wer_pivot = wer_lang.pivot(index="Model", columns="Language", values="WER")
+
+print(wer_pivot)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Language                 en       mix        ru
+Model                                          
+Faster-Whisper-V3  0.077483  0.375000  0.057867
+Whisper-Turbo      0.255550  0.286117  0.057867
+Whisper-v3         0.051850  0.352783  0.076383
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [13]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>latency = (
+    df.groupby("Model")["Time_Sec"]
+      .mean()
+      .reset_index()
+      .sort_values("Time_Sec")
+)
+
+print(latency)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">               Model  Time_Sec
+1      Whisper-Turbo  0.692778
+0  Faster-Whisper-V3  1.438889
+2         Whisper-v3  1.528333
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [15]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>comparison = (
+    df.groupby("Model")["WER"]
+      .describe()
+)
+
+print(comparison)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">                   count      mean       std  min  25%      50%       75%  max
+Model                                                                         
+Faster-Whisper-V3   18.0  0.170117  0.205497  0.0  0.0  0.11110  0.237500  0.6
+Whisper-Turbo       18.0  0.199844  0.291326  0.0  0.0  0.10555  0.191675  1.0
+Whisper-v3          18.0  0.160339  0.206827  0.0  0.0  0.11110  0.216650  0.6
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [14]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>hardest = df.sort_values("WER", ascending=False).head(10)
+
+print(hardest[["Model", "Language", "WER", "Predicted"]])</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">                Model Language     WER  \
+40      Whisper-Turbo       en  1.0000   
+51      Whisper-Turbo      mix  0.7500   
+31  Faster-Whisper-V3      mix  0.6000   
+34  Faster-Whisper-V3      mix  0.6000   
+17         Whisper-v3      mix  0.6000   
+13         Whisper-v3      mix  0.6000   
+49      Whisper-Turbo      mix  0.6000   
+12         Whisper-v3      mix  0.5000   
+30  Faster-Whisper-V3      mix  0.5000   
+41      Whisper-Turbo       en  0.3333   
+
+                                           Predicted  
+40   привет что вы думаете кто лучший сцентр в жизни  
+51             привет привет как будет погода завтра  
+31     мы планируем пойти на воду но там было занято  
+34  это мне кажется или 1 плюс 1 это действительно 3  
+17             с днём рождения тебя а я ищу altebest  
+13     мы планируем пойти на воду но там было занято  
+49     мы планируем идти на спирт но там было занято  
+12     вчера у нас была презентация а я сидел скрынч  
+30  вчера у нас была презентация а я здесь вот хрень  
+41           hi sri how to find the proposal of life  
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">trash dalwe</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># !pip install jiwer
+# from jiwer import wer, cer</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Collecting jiwer
+  Downloading jiwer-4.0.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: click&gt;=8.1.8 in /usr/local/lib/python3.12/dist-packages (from jiwer) (8.3.1)
+Collecting rapidfuzz&gt;=3.9.7 (from jiwer)
+  Downloading rapidfuzz-3.14.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (12 kB)
+Downloading jiwer-4.0.0-py3-none-any.whl (23 kB)
+Downloading rapidfuzz-3.14.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (3.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.2/3.2 MB[0m [31m52.4 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: rapidfuzz, jiwer
+Successfully installed jiwer-4.0.0 rapidfuzz-3.14.3
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># org = "hello my name is baurzhan im from kazakhstan"
+# pred = "hello my name is pao zhang im from kazakhstan"
+# print(round(wer(org, pred), 4))</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">0.25
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># from nemo.collections.asr.models import EncDecMultiTaskModel
+
+# canary_model = EncDecMultiTaskModel.from_pretrained('nvidia/canary-1b')
+# canary_model.to("cuda")
+
+# for audio in audios:
+#     start_time = time.time()
+#     res = canary_model.transcribe(
+#         paths2audio_files=[audio["file"]],
+#         task="asr",
+#         source_lang=audio["lang"],
+#         batch_size=1
+#     )
+
+#     prediction = res[0] if isinstance(res, list) else res
+
+#     record_result("Canary-1B", audio, prediction, time.time() - start_time)
+
+# del canary_model
+# torch.cuda.empty_cache()
+</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [ ]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre></pre></div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/jupyter-to-pdf">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
